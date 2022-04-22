@@ -1,0 +1,26 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configs
+      discovery:
+        enabled: true
+  security:
+    user:
+      name: ${ADMIN_USER}
+      password: ${ADMIN_PASSWORD}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8091/eureka/
+    fetch-registry: true
+    register-with-eureka: true
