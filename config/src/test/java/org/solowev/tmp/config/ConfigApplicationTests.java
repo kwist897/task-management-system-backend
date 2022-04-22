@@ -1,10 +1,10 @@
-package org.solowev.tms.discovery;
+package org.solowev.tmp.config;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServiceDiscoveryApplicationTests {
+class ConfigApplicationTests {
 
     @Test
     void contextLoads() {

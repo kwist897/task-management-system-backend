@@ -1,4 +1,4 @@
-package org.solowev.tms.config;
+package org.solowev.tmp.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

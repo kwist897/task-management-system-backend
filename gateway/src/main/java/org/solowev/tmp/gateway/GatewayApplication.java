@@ -1,4 +1,4 @@
-package org.solowev.tms.gateway;
+package org.solowev.tmp.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

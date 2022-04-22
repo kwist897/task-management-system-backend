@@ -1,10 +1,10 @@
-package org.solowev.tms.gateway;
+package org.solowev.tmp.discovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GatewayApplicationTests {
+class ServiceDiscoveryApplicationTests {
 
     @Test
     void contextLoads() {
