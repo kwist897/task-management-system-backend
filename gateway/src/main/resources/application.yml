@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      uri: http://localhost:8090
+      username: ${ADMIN_USER}
+      password: ${ADMIN_PASSWORD}
+      fail-fast: true
+  config:
+    import: "optional:configserver:"
