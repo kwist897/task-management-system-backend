@@ -13,9 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>gateway</name>
     <description>Gateway project for Spring Boot</description>
-    <properties>
-        <maven.tests.skip>true</maven.tests.skip>
-    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

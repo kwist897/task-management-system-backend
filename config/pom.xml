@@ -16,10 +16,6 @@
 
     <packaging>jar</packaging>
 
-    <properties>
-        <maven.tests.skip>true</maven.tests.skip>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
