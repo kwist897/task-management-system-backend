@@ -1,0 +1,16 @@
+server:
+  port: 8093
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://${DATABASE_URL}"
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        default_schema: tpm_user_service
+        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    database: postgresql

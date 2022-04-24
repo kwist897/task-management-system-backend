@@ -10,11 +10,25 @@
     </parent>
 
     <artifactId>discovery</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>service-discovery</name>
     <description>Demo project for Spring Boot</description>
 
     <packaging>jar</packaging>
+
+    <profiles>
+        <profile>
+            <id>docker-build-push</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -32,9 +46,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <finalName>discovery</finalName>
-                </configuration>
             </plugin>
         </plugins>
     </build>

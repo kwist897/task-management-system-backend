@@ -6,7 +6,7 @@
 
     <groupId>org.solowev.tmp</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0</version>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -16,6 +16,8 @@
         <spring.boot.maven.plugin.version>2.6.7</spring.boot.maven.plugin.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <docker.username>kwist</docker.username>
+        <image>${docker.username}/${project.artifactId}:${project.version}</image>
     </properties>
 
     <modules>
@@ -23,6 +25,7 @@
         <module>config</module>
         <module>gateway</module>
         <module>user-service</module>
+        <module>base</module>
     </modules>
 
     <dependencies>
@@ -67,6 +70,37 @@
                         <execution>
                             <goals>
                                 <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>3.2.1</version>
+                    <configuration>
+                        <from>
+                            <image>
+                                openjdk:17.0.2-jdk-slim-buster@sha256:1201f5d5750aac6efa9e97c50bbedb6490a617b408b7ade93358d6388e261bcd
+                            </image>
+                            <platforms>
+                                <platform>
+                                    <architecture>amd64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                            </platforms>
+                        </from>
+                        <to>
+                            <tags>
+                                <tag>latest</tag>
+                            </tags>
+                        </to>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
                             </goals>
                         </execution>
                     </executions>
