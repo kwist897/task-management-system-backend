@@ -1,4 +1,4 @@
-package org.solowev.tmp.discovery;
+package org.solowev.taskmanager.discovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

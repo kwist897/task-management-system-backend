@@ -1,4 +1,4 @@
-package org.solowev.tmp.gateway;
+package org.solowev.taskmanager.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

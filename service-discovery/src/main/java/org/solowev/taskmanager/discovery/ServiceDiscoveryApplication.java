@@ -1,4 +1,4 @@
-package org.solowev.tmp.discovery;
+package org.solowev.taskmanager.discovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
