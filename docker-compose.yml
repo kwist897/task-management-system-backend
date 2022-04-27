@@ -1,6 +1,6 @@
 services:
-  user-postgres:
-    container_name: user-postgres
+  userpostgres:
+    container_name: userpostgres
     image: postgres:14.2-bullseye
     restart: always
     ports:
@@ -36,7 +36,7 @@ services:
       - microservices
       - databases
     depends_on:
-      user-postgres:
+      userpostgres:
         condition: service_healthy
     volumes:
       - ./docker/realm-export.json:/opt/jboss/keycloak/realm-export.json
