@@ -24,6 +24,11 @@
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
+                        <configuration>
+                            <container>
+                                <mainClass>org.solowev.taskmanager.discovery.ServiceDiscoveryApplication</mainClass>
+                            </container>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

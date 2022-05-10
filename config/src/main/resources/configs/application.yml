@@ -4,3 +4,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URL}
+
+logging:
+  level:
+    root: info
+    org.spring.framework: warn
+    org.hibernate: error

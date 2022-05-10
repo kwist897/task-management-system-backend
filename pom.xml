@@ -11,20 +11,20 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.cloud.dependencies.version>2021.0.1</spring.cloud.dependencies.version>
+        <spring.cloud.dependencies.version>2021.0.2</spring.cloud.dependencies.version>
         <spring.boot.dependencies.version>2.6.7</spring.boot.dependencies.version>
         <spring.boot.maven.plugin.version>2.6.7</spring.boot.maven.plugin.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <docker.username>kwist</docker.username>
-        <image>${docker.username}/${project.artifactId}:${project.version}</image>
+        <image>${docker.username}/${project.artifactId}</image>
     </properties>
 
     <modules>
         <module>service-discovery</module>
         <module>config</module>
         <module>gateway</module>
-        <module>user-service</module>
+        <module>auth-service</module>
         <module>base</module>
     </modules>
 
@@ -66,6 +66,11 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.maven.plugin.version}</version>
+                    <configuration>
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
+                    </configuration>
                     <executions>
                         <execution>
                             <goals>
@@ -79,9 +84,20 @@
                     <artifactId>jib-maven-plugin</artifactId>
                     <version>3.2.1</version>
                     <configuration>
+                        <from>
+                            <image>
+                                eclipse-temurin:17.0.2_8-jre-focal@sha256:cb3d05d72a5f2c7782a87ebdb2f1a5b8bad46998f51a50611aad0deed2096718
+                            </image>
+                            <platforms>
+                                <platform>
+                                    <architecture>amd64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                            </platforms>
+                        </from>
                         <to>
                             <tags>
-                                <tag>latest</tag>
+                                <tag>${project.version}</tag>
                             </tags>
                         </to>
                     </configuration>
