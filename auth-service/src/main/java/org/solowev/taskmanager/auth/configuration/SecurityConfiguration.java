@@ -45,8 +45,6 @@ public class SecurityConfiguration {
                     .anyRequest().hasRole("USER")
                 .accessDecisionManager(accessDecisionManager())
                 .and()
-                    .oauth2Login()
-                .and()
                     .oauth2ResourceServer()
                         .jwt(jwt ->
                                 jwt.jwtAuthenticationConverter(customJwtAuthenticationConverter));

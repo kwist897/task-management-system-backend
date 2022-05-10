@@ -8,5 +8,5 @@ eureka:
 logging:
   level:
     root: info
-    org.spring.framework: warn
-    org.hibernate: error
+    org.spring.framework: error
+    org.hibernate: warn

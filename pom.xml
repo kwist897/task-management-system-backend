@@ -25,7 +25,6 @@
         <module>config</module>
         <module>gateway</module>
         <module>auth-service</module>
-        <module>base</module>
     </modules>
 
     <dependencies>
