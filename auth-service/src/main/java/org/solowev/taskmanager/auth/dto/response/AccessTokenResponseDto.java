@@ -11,6 +11,8 @@ import java.util.Date;
 public class AccessTokenResponseDto {
     @JsonIgnore
     private String id;
+
     private String accessToken;
+
     private Date expirationDate;
 }

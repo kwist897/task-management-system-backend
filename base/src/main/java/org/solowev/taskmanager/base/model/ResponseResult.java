@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.auth.dto;
+package org.solowev.taskmanager.base.model;
 
 public enum ResponseResult {
     OK,

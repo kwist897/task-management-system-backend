@@ -16,5 +16,6 @@ public enum ErrorCode {
     BAD_REQUEST("Bad request", HttpStatus.BAD_REQUEST);
 
     private final String message;
+
     private final HttpStatus httpStatus;
 }

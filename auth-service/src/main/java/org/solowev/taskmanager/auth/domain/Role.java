@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.solowev.taskmanager.auth.utils.enums.RoleEnum;
+import org.solowev.taskmanager.base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

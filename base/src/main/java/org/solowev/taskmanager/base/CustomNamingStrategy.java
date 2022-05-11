@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.auth.utils;
+package org.solowev.taskmanager.base;
 
 import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
 import org.hibernate.boot.model.naming.Identifier;

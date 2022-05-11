@@ -30,11 +30,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+
     private final PasswordEncoder passwordEncoder;
+
     private final UserResponseMapper userResponseMapper;
+
     private final UserRequestMapper userRequestMapper;
+
     private final RoleRepository roleRepository;
+
     private final HelperService helperService;
+
     private final TokenService tokenService;
 
     @Override

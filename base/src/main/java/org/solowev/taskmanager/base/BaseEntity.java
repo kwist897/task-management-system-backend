@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.auth.domain;
+package org.solowev.taskmanager.base;
 
 import lombok.Getter;
 import lombok.Setter;

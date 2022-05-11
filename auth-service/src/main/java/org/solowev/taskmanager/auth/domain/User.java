@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.solowev.taskmanager.auth.utils.enums.AccountType;
 import org.solowev.taskmanager.auth.utils.enums.AuthProvider;
+import org.solowev.taskmanager.base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,18 +56,9 @@ public class User extends BaseEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "user_workspace",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "workspace_id")
-    )
-    @ToString.Exclude
-    private List<Workspace> workspaces;
-
-    @ManyToMany
-    @JoinTable(
             name = "user_role",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id")
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     @ToString.Exclude
     private List<Role> roles;

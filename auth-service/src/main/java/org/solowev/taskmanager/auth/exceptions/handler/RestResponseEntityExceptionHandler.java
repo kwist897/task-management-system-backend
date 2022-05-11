@@ -1,10 +1,10 @@
 package org.solowev.taskmanager.auth.exceptions.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.solowev.taskmanager.auth.dto.ErrorDto;
-import org.solowev.taskmanager.auth.dto.ResponseDto;
-import org.solowev.taskmanager.auth.dto.ResponseResult;
 import org.solowev.taskmanager.auth.exceptions.TaskManagerException;
+import org.solowev.taskmanager.base.model.ErrorDto;
+import org.solowev.taskmanager.base.model.ResponseDto;
+import org.solowev.taskmanager.base.model.ResponseResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

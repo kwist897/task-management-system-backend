@@ -11,6 +11,8 @@ import java.util.Date;
 public class RefreshTokenResponseDto {
     @JsonIgnore
     private String id;
+
     private String refreshToken;
+
     private Date expirationDate;
 }

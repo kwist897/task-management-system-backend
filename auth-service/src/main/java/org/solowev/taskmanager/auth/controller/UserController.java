@@ -1,10 +1,10 @@
 package org.solowev.taskmanager.auth.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.solowev.taskmanager.base.security.CustomJwtAuthenticationToken;
 import org.solowev.taskmanager.auth.dto.request.UserRequestDto;
 import org.solowev.taskmanager.auth.dto.response.UserResponseDto;
 import org.solowev.taskmanager.auth.service.UserService;
+import org.solowev.taskmanager.base.security.CustomJwtAuthenticationToken;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,20 +30,22 @@ public class UserController {
     }
 
     @GetMapping("/user/principal")
-    public Object getToken(Authentication authentication){
+    public Object getToken(Authentication authentication) {
         return authentication.getPrincipal();
     }
 
     @GetMapping("/user/token")
-    public Object getElse(Authentication authentication){
+    public Object getElse(Authentication authentication) {
         return ((CustomJwtAuthenticationToken) authentication).getToken();
     }
+
     @GetMapping("/user/roles")
-    public Object getElse2(Authentication authentication){
+    public Object getElse2(Authentication authentication) {
         return authentication.getAuthorities();
     }
+
     @GetMapping("/user/creds")
-    public Object getElse3(Authentication authentication){
+    public Object getElse3(Authentication authentication) {
         return authentication.getCredentials();
     }
 

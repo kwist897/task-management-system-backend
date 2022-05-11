@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.auth.dto;
+package org.solowev.taskmanager.base.model;
 
 import lombok.Data;
 

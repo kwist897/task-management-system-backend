@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.auth.mapper;
+package org.solowev.taskmanager.base;
 
 import java.util.List;
 

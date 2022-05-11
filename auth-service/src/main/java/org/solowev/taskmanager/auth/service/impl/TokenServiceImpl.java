@@ -3,7 +3,6 @@ package org.solowev.taskmanager.auth.service.impl;
 import com.nimbusds.jose.jwk.JWKSet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.solowev.taskmanager.base.security.CustomJwtAuthenticationToken;
 import org.solowev.taskmanager.auth.domain.AccessToken;
 import org.solowev.taskmanager.auth.domain.RefreshToken;
 import org.solowev.taskmanager.auth.domain.User;
@@ -19,6 +18,7 @@ import org.solowev.taskmanager.auth.repository.RefreshTokenRepository;
 import org.solowev.taskmanager.auth.repository.UserRepository;
 import org.solowev.taskmanager.auth.security.TokenProvider;
 import org.solowev.taskmanager.auth.service.TokenService;
+import org.solowev.taskmanager.base.security.CustomJwtAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
@@ -40,8 +40,6 @@ public class TokenServiceImpl implements TokenService {
     private final UserRepository userRepository;
 
     private final AccessTokenMapper accessTokenMapper;
-
-    private final RefreshTokenMapper refreshTokenMapper;
 
     @Override
     public TokenResponseDto createTokens(User user) {
