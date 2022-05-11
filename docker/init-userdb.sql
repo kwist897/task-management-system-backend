@@ -1,2 +1,2 @@
-CREATE DATABASE keycloak;
-CREATE DATABASE auth;
+CREATE DATABASE auth_service;
+CREATE DATABASE user_service;
