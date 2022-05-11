@@ -18,23 +18,6 @@ import java.time.Duration;
 
 @Configuration
 public class ResourceServerConfiguration {
-    /**
-     * role claim
-     */
-    private static final String ROLE_CLAIM = "roles";
-
-    @Bean
-    public CustomJwtAuthenticationConverter customJwtAuthenticationConverter() {
-        JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        jwtGrantedAuthoritiesConverter.setAuthorityPrefix("");
-        jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName(ROLE_CLAIM);
-
-        CustomJwtAuthenticationConverter jwtAuthenticationConverter = new CustomJwtAuthenticationConverter();
-        jwtAuthenticationConverter.setGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
-
-        return jwtAuthenticationConverter;
-    }
-
     @Bean
     public JwtDecoder jwtDecoder(TokenProvider tokenProvider) throws JOSEException {
         JWK jwk = tokenProvider.getJWK();

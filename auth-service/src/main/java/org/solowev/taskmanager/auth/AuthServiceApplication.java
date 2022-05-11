@@ -6,14 +6,14 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.solowev.taskmanager")
 @EnableAspectJAutoProxy
 @EnableEurekaClient
 @EnableWebSecurity
-public class AccountServiceApplication {
+public class AuthServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AccountServiceApplication.class, args);
+        SpringApplication.run(AuthServiceApplication.class, args);
     }
 
 }

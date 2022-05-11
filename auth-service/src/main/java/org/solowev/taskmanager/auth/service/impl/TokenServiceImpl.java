@@ -1,6 +1,9 @@
 package org.solowev.taskmanager.auth.service.impl;
 
+import com.nimbusds.jose.jwk.JWKSet;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.solowev.taskmanager.base.security.CustomJwtAuthenticationToken;
 import org.solowev.taskmanager.auth.domain.AccessToken;
 import org.solowev.taskmanager.auth.domain.RefreshToken;
 import org.solowev.taskmanager.auth.domain.User;
@@ -14,7 +17,6 @@ import org.solowev.taskmanager.auth.mapper.RefreshTokenMapper;
 import org.solowev.taskmanager.auth.repository.AccessTokenRepository;
 import org.solowev.taskmanager.auth.repository.RefreshTokenRepository;
 import org.solowev.taskmanager.auth.repository.UserRepository;
-import org.solowev.taskmanager.auth.security.CustomJwtAuthenticationToken;
 import org.solowev.taskmanager.auth.security.TokenProvider;
 import org.solowev.taskmanager.auth.service.TokenService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,12 +29,18 @@ import java.util.Map;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class TokenServiceImpl implements TokenService {
     private final TokenProvider tokenProvider;
+
     private final RefreshTokenRepository refreshTokenRepository;
+
     private final AccessTokenRepository accessTokenRepository;
+
     private final UserRepository userRepository;
+
     private final AccessTokenMapper accessTokenMapper;
+
     private final RefreshTokenMapper refreshTokenMapper;
 
     @Override
@@ -66,9 +74,9 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public Map<String, Object> getJwkKeys() {
-        return tokenProvider.getJWK()
-                .toPublicJWK()
-                .toJSONObject();
+        boolean onlyPublicKeys = true;
+        return new JWKSet(tokenProvider.getJWK())
+                .toJSONObject(onlyPublicKeys);
     }
 
     private AccessTokenResponseDto createAccessToken(User user) {

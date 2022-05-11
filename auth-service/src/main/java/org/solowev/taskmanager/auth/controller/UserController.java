@@ -1,9 +1,9 @@
 package org.solowev.taskmanager.auth.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.solowev.taskmanager.base.security.CustomJwtAuthenticationToken;
 import org.solowev.taskmanager.auth.dto.request.UserRequestDto;
 import org.solowev.taskmanager.auth.dto.response.UserResponseDto;
-import org.solowev.taskmanager.auth.security.CustomJwtAuthenticationToken;
 import org.solowev.taskmanager.auth.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;

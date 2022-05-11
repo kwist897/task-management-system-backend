@@ -34,17 +34,24 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 public class TokenProviderImpl implements TokenProvider {
+    /**
+     * JWK id is generated only once until next restart
+     */
     private static final String JWK_KEY_ID = UUID.randomUUID().toString();
 
     /**
      * role defines that user has permission to obtain new access token by refresh token
      */
     private static final String REFRESH_ROLE = "ROLE_REFRESH_TOKEN";
+
     private final KeystoreHelper keystoreHelper;
+
     @Value("${app.baseUrl}")
     private String issuer;
+
     @Value("${app.jwt.expirationTime}")
     private Long accessExpirationTime;
+
     @Value("${app.jwt.refreshExpirationTime}")
     private Long refreshExpirationTime;
 

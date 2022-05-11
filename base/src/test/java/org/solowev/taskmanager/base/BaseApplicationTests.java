@@ -1,10 +1,10 @@
-package org.solowev.taskmanager.auth;
+package org.solowev.taskmanager.base;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AccountServiceApplicationTests {
+class BaseApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,7 +1,7 @@
-package org.solowev.taskmanager.auth.configuration;
+package org.solowev.taskmanager.base.configuration;
 
-import org.solowev.taskmanager.auth.security.CustomJwtAuthenticationToken;
-import org.solowev.taskmanager.auth.security.SecurityUser;
+import org.solowev.taskmanager.base.security.CustomJwtAuthenticationToken;
+import org.solowev.taskmanager.base.security.SecurityUser;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -11,10 +11,25 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 
 import java.util.List;
 
+/**
+ * Jwt Authentication converter for {@link CustomJwtAuthenticationToken}
+ */
 public final class CustomJwtAuthenticationConverter implements Converter<Jwt, AbstractAuthenticationToken> {
+    /**
+     * user id claim
+     */
     private static final String USER_ID_CLAIM = "userId";
+
+    /**
+     * username claim
+     */
     private static final String USERNAME_CLAIM = "sub";
+
+    /**
+     * email claim
+     */
     private static final String EMAIL_CLAIM = "userEmail";
+
     private JwtGrantedAuthoritiesConverter jwtAuthoritiesConverter;
 
     public void setGrantedAuthoritiesConverter(JwtGrantedAuthoritiesConverter jwtAuthoritiesConverter) {
