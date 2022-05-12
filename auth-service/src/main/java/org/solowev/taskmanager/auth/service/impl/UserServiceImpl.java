@@ -7,8 +7,6 @@ import org.solowev.taskmanager.auth.dto.request.UserRequestDto;
 import org.solowev.taskmanager.auth.dto.response.TokenResponseDto;
 import org.solowev.taskmanager.auth.dto.response.UserResponseDto;
 import org.solowev.taskmanager.auth.exceptions.NotFoundException;
-import org.solowev.taskmanager.auth.exceptions.TaskManagerException;
-import org.solowev.taskmanager.auth.exceptions.handler.ErrorCode;
 import org.solowev.taskmanager.auth.mapper.UserRequestMapper;
 import org.solowev.taskmanager.auth.mapper.UserResponseMapper;
 import org.solowev.taskmanager.auth.repository.RoleRepository;
@@ -18,6 +16,8 @@ import org.solowev.taskmanager.auth.service.TokenService;
 import org.solowev.taskmanager.auth.service.UserService;
 import org.solowev.taskmanager.auth.utils.enums.AccountType;
 import org.solowev.taskmanager.auth.utils.enums.RoleEnum;
+import org.solowev.taskmanager.base.exceptions.ErrorCode;
+import org.solowev.taskmanager.base.exceptions.TaskManagerException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -51,9 +51,7 @@ public class UserServiceImpl implements UserService {
 
         if (userRepository.existsByUsernameOrEmail(userDto.getUsername(), userDto.getEmail())) {
             throw new TaskManagerException(ErrorCode.RESOURCE_EXISTS_EXCEPTION,
-                    String.format("User email - %s or username - %s already exists",
-                            userDto.getUsername(),
-                            userDto.getEmail()));
+                    "User email or username already exists");
         }
 
         Role role = roleRepository.findByRoleName(RoleEnum.ROLE_USER);

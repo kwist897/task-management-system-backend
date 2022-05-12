@@ -1,6 +1,7 @@
 package org.solowev.taskmanager.auth.exceptions;
 
-import org.solowev.taskmanager.auth.exceptions.handler.ErrorCode;
+import org.solowev.taskmanager.base.exceptions.ErrorCode;
+import org.solowev.taskmanager.base.exceptions.TaskManagerException;
 
 /**
  * Exception for working with tokens

@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.userservice;
+package org.solowev.taskmanager.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package org.solowev.taskmanager.auth.exceptions.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.solowev.taskmanager.auth.exceptions.TaskManagerException;
+import org.solowev.taskmanager.base.exceptions.TaskManagerException;
 import org.solowev.taskmanager.base.model.ErrorDto;
 import org.solowev.taskmanager.base.model.ResponseDto;
 import org.solowev.taskmanager.base.model.ResponseResult;

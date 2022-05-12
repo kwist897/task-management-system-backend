@@ -41,6 +41,8 @@ public class TokenServiceImpl implements TokenService {
 
     private final AccessTokenMapper accessTokenMapper;
 
+    private final RefreshTokenMapper refreshTokenMapper;
+
     @Override
     public TokenResponseDto createTokens(User user) {
         TokenResponseDto tokenResponse = new TokenResponseDto();
@@ -90,11 +92,8 @@ public class TokenServiceImpl implements TokenService {
     private RefreshTokenResponseDto createRefreshToken(User user) {
         RefreshTokenResponseDto refreshTokenResponse = tokenProvider.generateRefreshToken(user);
 
-        RefreshToken refreshToken = new RefreshToken();
+        RefreshToken refreshToken = refreshTokenMapper.toEntity(refreshTokenResponse);
         refreshToken.setUser(user);
-        refreshToken.setId(refreshTokenResponse.getId());
-        refreshToken.setToken(refreshTokenResponse.getRefreshToken());
-        refreshToken.setExpirationDate(refreshTokenResponse.getExpirationDate());
         refreshTokenRepository.save(refreshToken);
 
         return refreshTokenResponse;

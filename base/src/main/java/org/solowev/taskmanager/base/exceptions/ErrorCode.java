@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.auth.exceptions.handler;
+package org.solowev.taskmanager.base.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

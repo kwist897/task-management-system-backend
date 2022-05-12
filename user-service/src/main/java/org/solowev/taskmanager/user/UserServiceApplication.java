@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.userservice;
+package org.solowev.taskmanager.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,6 @@
-package org.solowev.taskmanager.auth.exceptions;
+package org.solowev.taskmanager.base.exceptions;
 
 import lombok.Getter;
-import org.solowev.taskmanager.auth.exceptions.handler.ErrorCode;
 
 /**
  * Common exception
