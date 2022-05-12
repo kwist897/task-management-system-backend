@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -37,5 +37,5 @@ public class Profile extends BaseEntity {
     @JoinTable(name = "profile_group",
             joinColumns = @JoinColumn(name = "profile_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id"))
-    private List<Group> groups;
+    private Set<Group> groups;
 }

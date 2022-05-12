@@ -6,11 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.solowev.taskmanager.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -28,4 +24,14 @@ public class Workspace extends BaseEntity {
 
     @Column
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by")
+    @ToString.Exclude
+    private Profile createdBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
+    @ToString.Exclude
+    private Group group;
 }
