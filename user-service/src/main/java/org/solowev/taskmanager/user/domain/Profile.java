@@ -1,5 +1,6 @@
 package org.solowev.taskmanager.user.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,6 +23,8 @@ import java.util.Set;
 public class Profile extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @EqualsAndHashCode.Include
+    @Column
     private Long id;
 
     @Column

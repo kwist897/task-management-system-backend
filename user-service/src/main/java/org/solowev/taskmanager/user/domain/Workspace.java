@@ -5,8 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.solowev.taskmanager.base.BaseEntity;
+import org.solowev.taskmanager.user.domain.enums.WorkspaceType;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Getter
@@ -34,4 +44,8 @@ public class Workspace extends BaseEntity {
     @JoinColumn(name = "group_id")
     @ToString.Exclude
     private Group group;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private WorkspaceType workspaceType;
 }

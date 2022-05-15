@@ -6,7 +6,15 @@ import lombok.Setter;
 import lombok.ToString;
 import org.solowev.taskmanager.base.BaseEntity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.Set;
 
 @Entity
@@ -30,12 +38,12 @@ public class Group extends BaseEntity {
     private Boolean isPrivate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "created_by")
     @ToString.Exclude
     private Profile createdBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "updated_by")
     @ToString.Exclude
     private Profile updatedBy;
 
