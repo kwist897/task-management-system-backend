@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.Set;
 
@@ -33,12 +31,10 @@ public class Profile extends BaseEntity {
     @Column
     private String lastName;
 
-    @Column
+    @Column(unique = true, updatable = false)
     private Long userId;
 
-    @ManyToMany
-    @JoinTable(name = "profile_group",
-            joinColumns = @JoinColumn(name = "profile_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    @ManyToMany(mappedBy = "participants")
+    @ToString.Exclude
     private Set<Group> groups;
 }

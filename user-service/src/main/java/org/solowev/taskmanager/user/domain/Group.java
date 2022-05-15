@@ -13,8 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -47,7 +49,21 @@ public class Group extends BaseEntity {
     @ToString.Exclude
     private Profile updatedBy;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany
+    @JoinTable(name = "group_profile",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "profile_id"))
     @ToString.Exclude
-    private Set<Profile> participants;
+    private Set<Profile> participants = new HashSet<>();
+
+    public void addParticipant(Profile profile) {
+        this.participants.add(profile);
+        profile.getGroups().add(this);
+    }
+
+    public void removeParticipant(Profile profile) {
+        this.participants.remove(profile);
+        profile.getGroups().remove(this);
+    }
+
 }

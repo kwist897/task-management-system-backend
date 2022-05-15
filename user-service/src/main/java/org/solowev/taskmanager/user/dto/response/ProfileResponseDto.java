@@ -9,6 +9,4 @@ public class ProfileResponseDto {
     private String firstName;
 
     private String lastName;
-
-    private Long userId;
 }

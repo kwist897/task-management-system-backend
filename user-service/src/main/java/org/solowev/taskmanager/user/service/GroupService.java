@@ -7,7 +7,12 @@ import java.util.List;
 
 public interface GroupService {
     GroupResponseDto createGroup(GroupRequestDto groupRequestDto);
+
     List<GroupResponseDto> getUserGroups(Long profileId);
-    GroupResponseDto updateGroup(GroupRequestDto groupRequestDto);
-    GroupResponseDto addParticipant(Long profileId);
+
+    GroupResponseDto updateGroup(GroupRequestDto groupRequestDto, Long groupId);
+
+    GroupResponseDto addParticipant(Long profileId, Long groupId);
+
+    GroupResponseDto deleteParticipant(Long profileId, Long groupId);
 }

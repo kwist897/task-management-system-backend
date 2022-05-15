@@ -1,14 +1,15 @@
 package org.solowev.taskmanager.user.dto.request;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 public class GroupRequestDto {
-    private Long id;
-
+    @NonNull
     private String title;
 
     private String description;
 
+    @NonNull
     private Boolean isPrivate;
 }

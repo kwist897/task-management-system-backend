@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum ErrorCode {
     INTERNAL_EXCEPTION("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR),
-    ACCESS_DENIED_EXCEPTION("Not enough rights to view", HttpStatus.FORBIDDEN),
+    ACCESS_DENIED_EXCEPTION("Not enough rights to do this", HttpStatus.FORBIDDEN),
     NOT_FOUND_EXCEPTION("Couldn't find resource", HttpStatus.NOT_FOUND),
     JWT_EXCEPTION("Error occurred while processing token", HttpStatus.INTERNAL_SERVER_ERROR),
     RESOURCE_EXISTS_EXCEPTION("Resource already exists", HttpStatus.CONFLICT),
