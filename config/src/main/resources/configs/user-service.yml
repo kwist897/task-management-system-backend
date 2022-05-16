@@ -1,0 +1,26 @@
+server:
+  port: 8094
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://${AUTH_SERVICE_URL}/token/jwk/keys
+  datasource:
+    url: "jdbc:postgresql://${USER_DATABASE_URL}/user_service"
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.solowev.taskmanager.base.CustomNamingStrategy
+    database: postgresql
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    drop-first: true
+  jackson:
+    time-zone: Europe/Moscow

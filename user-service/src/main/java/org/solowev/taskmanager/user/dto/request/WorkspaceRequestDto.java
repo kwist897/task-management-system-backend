@@ -1,8 +1,7 @@
 package org.solowev.taskmanager.user.dto.request;
 
 import lombok.Data;
-import org.solowev.taskmanager.user.dto.response.GroupResponseDto;
-import org.solowev.taskmanager.user.dto.response.ProfileResponseDto;
+import org.solowev.taskmanager.user.domain.enums.WorkspaceType;
 
 @Data
 public class WorkspaceRequestDto {
@@ -10,7 +9,7 @@ public class WorkspaceRequestDto {
 
     private String description;
 
-    private ProfileResponseDto createdBy;
+    private WorkspaceType workspaceType;
 
-    private GroupResponseDto group;
+    private Long groupId;
 }

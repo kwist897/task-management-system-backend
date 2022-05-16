@@ -43,6 +43,9 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public GroupResponseDto createGroup(GroupRequestDto groupRequestDto) {
+        if (groupRequestDto.getTitle() == null || groupRequestDto.getIsPrivate() == null) {
+            throw new TaskManagerException(ErrorCode.BAD_REQUEST, "title or visibility is null");
+        }
         Group group = groupRequestMapper.toEntity(groupRequestDto);
         SecurityUser user = SecurityUtils.getCurrentUser();
 
@@ -82,7 +85,7 @@ public class GroupServiceImpl implements GroupService {
         Long userId = SecurityUtils.getCurrentUser().getId();
         Profile profile = profileService.findProfileByUserId(userId);
 
-        if (!group.getParticipants().contains(profile) || !SecurityUtils.containsAnyRole(List.of(ROLE_ADMIN))) {
+        if (!group.getParticipants().contains(profile) && !SecurityUtils.containsAnyRole(List.of(ROLE_ADMIN))) {
             throw new TaskManagerException(ErrorCode.ACCESS_DENIED_EXCEPTION);
         }
 
@@ -103,7 +106,8 @@ public class GroupServiceImpl implements GroupService {
         Profile currentProfile = profileService.findProfileByUserId(userId);
 
         if (group.getParticipants().contains(profile) || !group.getParticipants().contains(currentProfile)) {
-            throw new TaskManagerException(ErrorCode.BAD_REQUEST);
+            throw new TaskManagerException(ErrorCode.BAD_REQUEST,
+                    "you are trying to add existing participant or you are not in the group");
         }
 
         group.addParticipant(profile);
@@ -122,7 +126,7 @@ public class GroupServiceImpl implements GroupService {
         Long userId = SecurityUtils.getCurrentUser().getId();
         Profile currentProfile = profileService.findProfileByUserId(userId);
 
-        if (group.getParticipants().containsAll(Set.of(profile, currentProfile))) {
+        if (!group.getParticipants().containsAll(List.of(profile, currentProfile))) {
             throw new TaskManagerException(ErrorCode.BAD_REQUEST,
                     "profile to delete or current profile is not in the group");
         }
