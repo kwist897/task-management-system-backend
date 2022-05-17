@@ -5,6 +5,12 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA_URL}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 logging:
   level:
     root: info

@@ -1,4 +1,4 @@
-package org.solowev.taskmanager.user.configuration;
+package org.solowev.taskmanager.project.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.solowev.taskmanager.base.configuration.CustomJwtAuthenticationConverter;

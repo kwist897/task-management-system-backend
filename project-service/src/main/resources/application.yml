@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: project-service
+  cloud:
+    config:
+      uri: ${CONFIG_URL}
+      username: ${ADMIN_USER}
+      password: ${ADMIN_PASSWORD}
+      fail-fast: false
+      allow-override: false
+  config:
+    import: "optional:configserver:"

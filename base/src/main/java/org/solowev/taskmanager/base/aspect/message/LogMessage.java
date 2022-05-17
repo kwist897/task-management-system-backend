@@ -15,15 +15,17 @@ public class LogMessage {
 
     public String getMessage(){
         return new StringBuilder()
+                .append("[ method:  ")
                 .append(controller)
                 .append("::")
                 .append(method)
-                .append(" direction: ")
+                .append(" ] [ I/O: ")
                 .append(direction)
-                .append(" user: ")
+                .append(" ] [ user: ")
                 .append(username)
-                .append(" time: ")
+                .append(" ] [ time: ")
                 .append(new Date())
+                .append(" ] ")
                 .toString();
     }
 }

@@ -13,7 +13,6 @@ import org.solowev.taskmanager.base.model.ErrorDto;
 import org.solowev.taskmanager.base.model.ResponseDto;
 import org.solowev.taskmanager.base.model.ResponseResult;
 import org.solowev.taskmanager.base.utils.SecurityUtils;
-import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
