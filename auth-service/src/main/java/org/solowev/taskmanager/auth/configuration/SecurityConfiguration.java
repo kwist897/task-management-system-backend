@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                     .antMatchers("/user/auth").permitAll()
                     .antMatchers("/token/jwk/keys").permitAll()
                     .antMatchers("/token/refresh").hasRole("REFRESH_TOKEN")
-                    .anyRequest().hasRole("USER")
+                    .anyRequest().permitAll()
                 .accessDecisionManager(accessDecisionManager)
                 .and()
                     .oauth2ResourceServer()
