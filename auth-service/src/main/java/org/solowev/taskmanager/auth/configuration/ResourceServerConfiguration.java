@@ -30,7 +30,6 @@ public class ResourceServerConfiguration {
 
         decoder.setJwtValidator(validator);
 
-
         return decoder;
     }
 }

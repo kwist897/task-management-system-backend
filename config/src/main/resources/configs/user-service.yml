@@ -5,7 +5,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://${AUTH_SERVICE_URL}/token/jwk/keys
+          jwk-set-uri: http://${AUTH_SERVICE_URL}/auth/token/jwk/keys
   datasource:
     url: "jdbc:postgresql://${USER_DATABASE_URL}/user_service"
     username: ${DATABASE_USERNAME}

@@ -10,14 +10,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfiguration {
     private final CustomJwtAuthenticationConverter customJwtAuthenticationConverter;
-
-    private final CorsConfigurationSource corsConfigurationSource;
 
     private final AccessDecisionManager accessDecisionManager;
 
@@ -28,21 +25,18 @@ public class SecurityConfiguration {
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
-                    .cors().configurationSource(corsConfigurationSource)
-                .and()
                     .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/user/registration").permitAll()
-                    .antMatchers("/user/auth").permitAll()
-                    .antMatchers("/token/jwk/keys").permitAll()
-                    .antMatchers("/token/refresh").hasRole("REFRESH_TOKEN")
-                    .anyRequest().permitAll()
+                    .antMatchers("/auth/user/registration").permitAll()
+                    .antMatchers("/auth/user/authenticate").permitAll()
+                    .antMatchers("/auth/token/jwk/keys").permitAll()
+                    .antMatchers("/auth/token/refresh").hasRole("REFRESH_TOKEN")
+                    .anyRequest().hasRole("USER")
                 .accessDecisionManager(accessDecisionManager)
                 .and()
                     .oauth2ResourceServer()
                         .jwt(jwt ->
                                 jwt.jwtAuthenticationConverter(customJwtAuthenticationConverter));
-
         //@formatter:on
         return http.build();
     }

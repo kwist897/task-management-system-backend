@@ -12,6 +12,7 @@ import org.solowev.taskmanager.user.domain.Profile;
 import org.solowev.taskmanager.user.dto.request.GroupRequestDto;
 import org.solowev.taskmanager.user.dto.response.GroupResponseDto;
 import org.solowev.taskmanager.user.exception.GroupNotFoundException;
+import org.solowev.taskmanager.user.exception.ProfileNotFoundException;
 import org.solowev.taskmanager.user.mapper.GroupRequestMapper;
 import org.solowev.taskmanager.user.mapper.GroupResponseMapper;
 import org.solowev.taskmanager.user.repository.GroupRepository;
@@ -50,12 +51,7 @@ public class GroupServiceImpl implements GroupService {
         SecurityUser user = SecurityUtils.getCurrentUser();
 
         Profile profile = profileRepository.findByUserId(user.getId())
-                .orElseGet(() -> {
-                    Profile newProfile = new Profile();
-                    newProfile.setUserId(user.getId());
-                    newProfile.setFirstName(user.getUsername());
-                    return profileRepository.save(newProfile);
-                });
+                .orElseThrow((ProfileNotFoundException::new));
 
         group.setCreatedBy(profile);
         group.setUpdatedBy(profile);

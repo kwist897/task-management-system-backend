@@ -28,6 +28,4 @@ public class UserResponseDto extends BaseDto {
     private List<RoleResponseDto> roles;
 
     private TokenResponseDto tokens;
-
-    private ProfileDto
 }

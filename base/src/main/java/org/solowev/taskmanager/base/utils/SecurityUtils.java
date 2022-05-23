@@ -1,13 +1,12 @@
 package org.solowev.taskmanager.base.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.solowev.taskmanager.base.exceptions.ErrorCode;
-import org.solowev.taskmanager.base.exceptions.TaskManagerException;
 import org.solowev.taskmanager.base.security.SecurityUser;
+import org.springframework.security.access.AuthorizationServiceException;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import java.security.Principal;
 import java.util.List;
 
 @Slf4j
@@ -23,10 +22,6 @@ public class SecurityUtils {
                     .getAuthentication()
                     .getPrincipal();
         } catch (Exception e) {
-            principal = SecurityUser.builder()
-                    .id(-123L)
-                    .username("UNAUTHENTICATED")
-                    .build();
             log.warn("user is not authenticated");
         }
         return principal;

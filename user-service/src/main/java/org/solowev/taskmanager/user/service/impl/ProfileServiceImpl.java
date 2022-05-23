@@ -34,7 +34,8 @@ public class ProfileServiceImpl implements ProfileService {
         profile.setUserId(userId);
         profileRepository.save(profile);
 
-        log.info("created profile {} for user with id {}", profile.getId(), userId);
+        log.info("created profile {}", profile);
+        log.info("");
 
         return profileResponseMapper.toDto(profile);
     }

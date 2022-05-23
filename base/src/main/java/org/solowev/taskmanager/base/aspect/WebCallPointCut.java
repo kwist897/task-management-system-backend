@@ -12,10 +12,13 @@ import org.solowev.taskmanager.base.exceptions.TaskManagerException;
 import org.solowev.taskmanager.base.model.ErrorDto;
 import org.solowev.taskmanager.base.model.ResponseDto;
 import org.solowev.taskmanager.base.model.ResponseResult;
+import org.solowev.taskmanager.base.security.SecurityUser;
 import org.solowev.taskmanager.base.utils.SecurityUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Slf4j
 @Aspect
@@ -75,7 +78,15 @@ public class WebCallPointCut {
     private LogMessage createMessage(ProceedingJoinPoint joinPoint, LogDirection logDirection) {
         String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
         String methodName = joinPoint.getSignature().getName();
-        String username = SecurityUtils.getCurrentUser().getUsername();
+        String username;
+
+        Optional<SecurityUser> securityUserOptional = Optional.ofNullable(SecurityUtils.getCurrentUser());
+
+        if(securityUserOptional.isPresent()){
+            username = securityUserOptional.get().getUsername();
+        } else {
+            username = "UNAUTHORIZED";
+        }
 
         return new LogMessage(className, methodName, logDirection, username);
     }

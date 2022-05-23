@@ -1,6 +1,7 @@
 package org.solowev.taskmanager.auth.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.solowev.taskmanager.auth.domain.Role;
 import org.solowev.taskmanager.auth.domain.User;
 import org.solowev.taskmanager.auth.dto.request.UserRequestDto;
@@ -23,11 +24,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -66,6 +69,7 @@ public class UserServiceImpl implements UserService {
 
         TokenResponseDto tokenResponse = tokenService.createTokens(user);
         userResponseDto.setTokens(tokenResponse);
+        log.info("Registered new User: " + user.getUsername());
 
         return userResponseDto;
     }
@@ -83,7 +87,7 @@ public class UserServiceImpl implements UserService {
 
         UserResponseDto userResponseDto = userResponseMapper.toDto(user);
         userResponseDto.setTokens(tokenResponseDto);
-
+        log.info("User authorized " + user.getUsername());
         return userResponseDto;
     }
 
