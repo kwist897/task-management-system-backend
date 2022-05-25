@@ -66,6 +66,13 @@ public class GroupServiceImpl implements GroupService {
     public List<GroupResponseDto> getUserGroups(Long profileId) {
         List<Group> groups = groupRepository.findByParticipants_Id(profileId);
 
+        Long userId = SecurityUtils.getCurrentUser().getId();
+        Profile profile = profileService.findProfileById(profileId);
+
+        if (profile.getUserId().equals(userId)) {
+            return groupResponseMapper.toDto(groups);
+        }
+
         List<Group> availableGroups = groups.stream()
                 .filter(group -> BooleanUtils.isNotTrue(group.getIsPrivate())
                         || SecurityUtils.containsAnyRole(List.of(ROLE_ADMIN)))
