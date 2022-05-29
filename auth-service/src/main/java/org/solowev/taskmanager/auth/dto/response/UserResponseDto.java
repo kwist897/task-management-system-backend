@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.solowev.taskmanager.auth.utils.enums.AccountType;
 import org.solowev.taskmanager.auth.utils.enums.AuthProvider;
 import org.solowev.taskmanager.base.model.BaseDto;
+import org.solowev.taskmanager.base.model.dto.ProfileResponseDto;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public class UserResponseDto extends BaseDto {
     private List<RoleResponseDto> roles;
 
     private TokenResponseDto tokens;
+
+    private ProfileResponseDto profile;
 }

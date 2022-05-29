@@ -40,4 +40,10 @@ public class ProfileController {
                                                             @PathVariable("profileId") Long profileId) {
         return ResponseEntity.ok(profileService.updateProfile(profileRequestDto, profileId));
     }
+
+    @WebCallJoinPoint
+    @GetMapping("/profile/{userId}")
+    public ResponseEntity<ProfileResponseDto> getProfileByUserId(@PathVariable("userId") Long userId) {
+        return ResponseEntity.ok(profileService.getProfileByUserId(userId));
+    }
 }

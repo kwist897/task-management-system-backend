@@ -1,5 +1,7 @@
 package org.solowev.taskmanager.auth.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.solowev.taskmanager.auth.domain.Role;
@@ -17,14 +19,16 @@ import org.solowev.taskmanager.auth.service.TokenService;
 import org.solowev.taskmanager.auth.service.UserService;
 import org.solowev.taskmanager.auth.utils.enums.AccountType;
 import org.solowev.taskmanager.auth.utils.enums.RoleEnum;
+import org.solowev.taskmanager.base.client.ProfileClient;
 import org.solowev.taskmanager.base.exceptions.ErrorCode;
 import org.solowev.taskmanager.base.exceptions.TaskManagerException;
+import org.solowev.taskmanager.base.model.ResponseDto;
+import org.solowev.taskmanager.base.model.dto.ProfileResponseDto;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -45,6 +49,8 @@ public class UserServiceImpl implements UserService {
     private final HelperService helperService;
 
     private final TokenService tokenService;
+
+    private final ProfileClient profileClient;
 
     @Override
     public UserResponseDto registration(UserRequestDto userDto) {
@@ -98,5 +104,21 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).orElseThrow(NotFoundException::new);
 
         return userResponseMapper.toDto(user);
+    }
+
+    @Override
+    public UserResponseDto getProfileByUsername(String username) throws JsonProcessingException {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundException("Couldn't find user with username: " + username));
+
+        ResponseDto response = profileClient.getProfileByUserId(user.getId()).getBody();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ProfileResponseDto profileResponseDto =
+                objectMapper.readValue(objectMapper.writeValueAsString(response.getData()),
+                        ProfileResponseDto.class);
+
+        UserResponseDto responseDto = userResponseMapper.toDto(user);
+        responseDto.setProfile(profileResponseDto);
+        return responseDto;
     }
 }

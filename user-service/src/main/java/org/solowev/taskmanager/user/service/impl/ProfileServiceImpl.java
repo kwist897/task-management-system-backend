@@ -67,4 +67,10 @@ public class ProfileServiceImpl implements ProfileService {
         return profileRepository.findByUserId(userId)
                 .orElseThrow(() -> new NotFoundException("couldn't find profile for current user"));
     }
+
+    @Override
+    public ProfileResponseDto getProfileByUserId(Long userId) {
+        Profile profile = findProfileByUserId(userId);
+        return profileResponseMapper.toDto(profile);
+    }
 }

@@ -1,5 +1,6 @@
 package org.solowev.taskmanager.base.configuration;
 
+import feign.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
@@ -15,6 +16,10 @@ import java.util.List;
 
 @Configuration
 public class SharedConfig {
+    @Bean
+    Logger.Level logger(){
+        return Logger.Level.FULL;
+    }
 
     @Bean
     public AccessDecisionManager accessDecisionManager() {

@@ -14,4 +14,7 @@ public interface ProfileService {
     Profile findProfileById(Long profileId);
 
     Profile findProfileByUserId(Long userId);
+
+    ProfileResponseDto getProfileByUserId(Long userId);
+
 }

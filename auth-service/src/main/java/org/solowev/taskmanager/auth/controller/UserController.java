@@ -1,5 +1,6 @@
 package org.solowev.taskmanager.auth.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.solowev.taskmanager.auth.dto.request.UserRequestDto;
 import org.solowev.taskmanager.auth.dto.response.UserResponseDto;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,5 +36,10 @@ public class UserController {
     @GetMapping("/current")
     public ResponseEntity<UserResponseDto> getCurrentUser() {
         return ResponseEntity.ok(userService.getUser());
+    }
+
+    @GetMapping
+    public ResponseEntity<UserResponseDto> getProfileByUsername(@RequestParam String username) throws JsonProcessingException {
+        return ResponseEntity.ok(userService.getProfileByUsername(username));
     }
 }
