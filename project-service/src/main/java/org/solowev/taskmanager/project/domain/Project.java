@@ -33,9 +33,6 @@ public class Project extends BaseEntity {
     private Long ownerId;
 
     @Column
-    private String Project;
-
-    @Column
     private Long workspaceId;
 
     @OneToMany

@@ -8,4 +8,6 @@ public class ProjectDto {
     private String title;
     private String version;
     private String description;
+    private Long workspaceId;
+    private Long ownerId;
 }

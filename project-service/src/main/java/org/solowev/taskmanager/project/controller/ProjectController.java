@@ -34,7 +34,7 @@ public class ProjectController {
                 .build();
     }
 
-    @GetMapping("/project/{workspaceId}")
+    @GetMapping("/workspace/{workspaceId}/projects")
     public ResponseEntity<List<ProjectDto>> getProjects(@PathVariable("workspaceId") Long workspaceId) {
         return ResponseEntity.ok(projectService.findAllProjectByWorkspace(workspaceId));
     }

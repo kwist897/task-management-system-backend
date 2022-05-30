@@ -5,20 +5,35 @@ spring:
   application:
     name: gateway
   cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
     gateway:
       routes:
+        - id: eureka
+          uri: lb://eureka:8091
+          predicates:
+            - Path=/eureka/**
+          filters:
+            - RemoveRequestHeader= Cookie,Set-Cookie
         - id: auth-service
-          uri: lb://auth-service
+          uri: lb://auth-service:8093
           predicates:
             - Path=/auth/**
+          filters:
+            - RemoveRequestHeader= Cookie,Set-Cookie
         - id: user-service
-          uri: lb://user-service
+          uri: lb://user-service:8094
           predicates:
             - Path=/user/**
+          filters:
+            - RemoveRequestHeader= Cookie,Set-Cookie
         - id: project-service
-          uri: lb://project-service
+          uri: lb://project-service:8095
           predicates:
             - Path=/project/**
+          filters:
+            - RemoveRequestHeader= Cookie,Set-Cookie
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
